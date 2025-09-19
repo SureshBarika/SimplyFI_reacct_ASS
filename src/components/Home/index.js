@@ -1,6 +1,8 @@
 import {useState,useEffect} from "react"
 import "./index.css"
 
+import { ThreeDots } from "react-loader-spinner";
+
 import ListItem from "../ListItem"
 
 
@@ -49,7 +51,18 @@ const Home = () => {
 
     return (
         <div className="main-cont">
-            { userData == null ? <h1>Loading...</h1> :
+            { userData == null ? (
+                 <div className="flex items-center justify-center h-screen">
+      <ThreeDots
+        height="80"
+        width="80"
+        radius="9"
+        color="#3498db"   // blue color
+        ariaLabel="three-dots-loading"
+        visible={true}
+      />
+    </div>
+            ) :
             <ul className="users-list">
                 {userData.map((user) => {
                     return <ListItem key={user.id} user={user} deleteUser={deleteuser} updateLike={updateLike} />
